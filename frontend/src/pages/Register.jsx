@@ -27,7 +27,7 @@ function Register() {
     e.preventDefault();
     // Handle form submission logic here
   
-    axios.post("http://localhost:5000/api/auth/register", formData)
+    axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, formData)
       .then((response) => {
         console.log(response.data);
         // Handle successful registration (e.g., redirect to login page)
