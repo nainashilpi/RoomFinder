@@ -8,7 +8,7 @@ import Roomies from "./pages/Roomies";
 import FindStay from "./pages/FindStay";
 import AddProperty from "./pages/AddProperty";
 import AddRoommate from "./pages/AddRoommate";
-import PropertyDetails from "./pages/propertyDetails";
+import PropertyDetails from "./pages/PropertyDetails";
 import RoommateDetails from "./pages/RoommateDetails";
   
 
