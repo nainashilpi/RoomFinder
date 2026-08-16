@@ -37,9 +37,7 @@ function Roomies() {
         setLoading(true);
         setError("");
 
-        const response = await axios.get(
-          "http://localhost:5000/api/roommates"
-        );
+        const response = axios.get(`${import.meta.env.VITE_API_URL}/api/roommates`)
 
         if (response.data?.success) {
           setRoommates(response.data.data || []);

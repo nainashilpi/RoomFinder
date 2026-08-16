@@ -56,9 +56,7 @@ function FindStay() {
         setLoading(true);
         setError("");
 
-        const response = await axios.get(
-          "http://localhost:5000/api/properties"
-        );
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/properties`)
 
         console.log("Properties from backend:", response.data);
 

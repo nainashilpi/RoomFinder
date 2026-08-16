@@ -37,9 +37,7 @@ const RoommateDetails = () => {
         setLoading(true);
         setError("");
 
-        const response = await axios.get(
-          `http://localhost:5000/api/roommates/${id}`
-        );
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/roommates/${id}`)
 
         if (response.data?.success) {
           setRoommate(response.data.data);

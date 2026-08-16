@@ -25,7 +25,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    axios.post("http://localhost:5000/api/auth/login", formData)
+    axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, formData)
       .then((response) => {
         console.log(response.data);
         // Handle successful login (e.g., redirect to dashboard)
