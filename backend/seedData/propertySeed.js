@@ -1,0 +1,273 @@
+const properties = [
+  {
+    title: "Luxury Single Room near MP Nagar",
+    description:
+      "A well-furnished single room available for working professionals or students. Located in the heart of MP Nagar with easy access to metro, markets and restaurants. The room is fully air-conditioned with high-speed WiFi and 24/7 power backup. Ideal for someone looking for a peaceful and comfortable stay.",
+    propertyType: "Room",
+    roomType: "Single",
+    rent: 7500,
+    securityDeposit: 15000,
+    availableFrom: new Date("2025-02-01"),
+    genderPreference: "Male",
+    furnishing: "Furnished",
+    amenities: ["WiFi", "AC", "Power Backup", "Attached Bathroom"],
+    images: [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800",
+    ],
+    location: {
+      city: "Bhopal",
+      state: "Madhya Pradesh",
+      area: "MP Nagar",
+      address: "Zone 1, MP Nagar, Bhopal",
+    },
+    contactNumber: "9876543210",
+    isVerified: true,
+    status: "Available",
+  },
+
+  {
+    title: "Affordable PG for Girls in Vijay Nagar",
+    description:
+      "Safe and secure PG accommodation exclusively for girls. Located in Vijay Nagar, Indore with all modern facilities. Home-cooked meals are provided twice a day. 24/7 security with CCTV coverage. Walking distance from colleges and shopping centres. Ideal for students and working women.",
+    propertyType: "PG",
+    roomType: "Double Sharing",
+    rent: 5500,
+    securityDeposit: 10000,
+    availableFrom: new Date("2025-01-15"),
+    genderPreference: "Female",
+    furnishing: "Furnished",
+    amenities: ["WiFi", "Food", "Power Backup", "Parking"],
+    images: [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800",
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800",
+    ],
+    location: {
+      city: "Indore",
+      state: "Madhya Pradesh",
+      area: "Vijay Nagar",
+      address: "Scheme 54, Vijay Nagar, Indore",
+    },
+    contactNumber: "9876543211",
+    isVerified: true,
+    status: "Available",
+  },
+
+  {
+    title: "Spacious 2BHK Flat in Connaught Place",
+    description:
+      "A beautifully designed 2BHK flat available for sharing in the prime location of Connaught Place, Delhi. The flat is semi-furnished with modular kitchen, two bathrooms and a spacious balcony. Ideal for working professionals who want a premium living experience in the city centre.",
+    propertyType: "Flat",
+    roomType: "Double Sharing",
+    rent: 14000,
+    securityDeposit: 28000,
+    availableFrom: new Date("2025-03-01"),
+    genderPreference: "Anyone",
+    furnishing: "Semi-Furnished",
+    amenities: ["WiFi", "AC", "Parking", "Power Backup"],
+    images: [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
+    ],
+    location: {
+      city: "Delhi",
+      state: "Delhi",
+      area: "Connaught Place",
+      address: "Block A, Connaught Place, New Delhi",
+    },
+    contactNumber: "9876543212",
+    isVerified: true,
+    status: "Available",
+  },
+
+  {
+    title: "Budget Hostel for Students in Pune",
+    description:
+      "Affordable hostel accommodation for students near Pune University. Triple sharing rooms with attached bathrooms. Includes breakfast and dinner in the mess. High-speed WiFi available throughout the building. 24-hour water supply and power backup available.",
+    propertyType: "Hostel",
+    roomType: "Triple Sharing",
+    rent: 4000,
+    securityDeposit: 8000,
+    availableFrom: new Date("2025-01-01"),
+    genderPreference: "Male",
+    furnishing: "Furnished",
+    amenities: ["WiFi", "Food", "Attached Bathroom", "Power Backup"],
+    images: [
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+    ],
+    location: {
+      city: "Pune",
+      state: "Maharashtra",
+      area: "Shivajinagar",
+      address: "Near Pune University, Shivajinagar, Pune",
+    },
+    contactNumber: "9876543213",
+    isVerified: false,
+    status: "Available",
+  },
+
+  {
+    title: "Modern Studio Apartment in Koramangala",
+    description:
+      "A stylish and modern studio apartment available for rent in the most vibrant neighbourhood of Bangalore. Fully furnished with premium quality furniture. Comes with a private kitchen, attached bathroom and a dedicated workspace. Perfect for single working professionals.",
+    propertyType: "Apartment",
+    roomType: "Single",
+    rent: 18000,
+    securityDeposit: 36000,
+    availableFrom: new Date("2025-02-15"),
+    genderPreference: "Anyone",
+    furnishing: "Furnished",
+    amenities: ["WiFi", "AC", "Parking", "Power Backup", "Attached Bathroom"],
+    images: [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800",
+    ],
+    location: {
+      city: "Bangalore",
+      state: "Karnataka",
+      area: "Koramangala",
+      address: "5th Block, Koramangala, Bangalore",
+    },
+    contactNumber: "9876543214",
+    isVerified: true,
+    status: "Available",
+  },
+
+  {
+    title: "Cozy Room for Girls in Salt Lake",
+    description:
+      "A cozy and safe room available for girls in the peaceful locality of Salt Lake, Kolkata. The room is well-ventilated with natural light and comes with basic furniture. Shared kitchen and bathroom facilities. Close to IT hubs and easy commute to city areas.",
+    propertyType: "Room",
+    roomType: "Single",
+    rent: 6000,
+    securityDeposit: 12000,
+    availableFrom: new Date("2025-01-20"),
+    genderPreference: "Female",
+    furnishing: "Semi-Furnished",
+    amenities: ["WiFi", "Power Backup"],
+    images: [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800",
+    ],
+    location: {
+      city: "Kolkata",
+      state: "West Bengal",
+      area: "Salt Lake",
+      address: "Sector V, Salt Lake, Kolkata",
+    },
+    contactNumber: "9876543215",
+    isVerified: false,
+    status: "Available",
+  },
+
+  {
+    title: "Premium PG near Cyber City Gurugram",
+    description:
+      "Premium PG accommodation located just 5 minutes from Cyber City, Gurugram. Ideal for IT professionals working in DLF Cyber Hub and nearby offices. Fully furnished rooms with AC, WiFi and housekeeping services included. Meals available on request.",
+    propertyType: "PG",
+    roomType: "Single",
+    rent: 12000,
+    securityDeposit: 24000,
+    availableFrom: new Date("2025-03-15"),
+    genderPreference: "Anyone",
+    furnishing: "Furnished",
+    amenities: ["WiFi", "AC", "Parking", "Food", "Power Backup"],
+    images: [
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800",
+    ],
+    location: {
+      city: "Gurugram",
+      state: "Haryana",
+      area: "Cyber City",
+      address: "DLF Phase 2, Cyber City, Gurugram",
+    },
+    contactNumber: "9876543216",
+    isVerified: true,
+    status: "Available",
+  },
+
+  {
+    title: "Affordable Triple Sharing Room in Andheri",
+    description:
+      "Budget-friendly triple sharing room available in Andheri West, Mumbai. Located near the metro station for easy commute. Shared kitchen and bathroom. Basic furniture included. Ideal for students or new jobbers who want to live in Mumbai without burning a hole in their pocket.",
+    propertyType: "Room",
+    roomType: "Triple Sharing",
+    rent: 5000,
+    securityDeposit: 10000,
+    availableFrom: new Date("2025-01-10"),
+    genderPreference: "Male",
+    furnishing: "Semi-Furnished",
+    amenities: ["WiFi", "Power Backup"],
+    images: [
+      "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800",
+    ],
+    location: {
+      city: "Mumbai",
+      state: "Maharashtra",
+      area: "Andheri West",
+      address: "Near Metro Station, Andheri West, Mumbai",
+    },
+    contactNumber: "9876543217",
+    isVerified: false,
+    status: "Available",
+  },
+
+  {
+    title: "Fully Furnished Flat in Banjara Hills",
+    description:
+      "A luxurious fully furnished flat available in the upscale Banjara Hills area of Hyderabad. The apartment has two bedrooms, a modern kitchen, two bathrooms and a spacious living room. Covered parking available. Perfect for professionals looking for premium accommodation.",
+    propertyType: "Apartment",
+    roomType: "Double Sharing",
+    rent: 20000,
+    securityDeposit: 40000,
+    availableFrom: new Date("2025-04-01"),
+    genderPreference: "Anyone",
+    furnishing: "Furnished",
+    amenities: ["WiFi", "AC", "Parking", "Power Backup", "Attached Bathroom"],
+    images: [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=800",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800",
+    ],
+    location: {
+      city: "Hyderabad",
+      state: "Telangana",
+      area: "Banjara Hills",
+      address: "Road No. 12, Banjara Hills, Hyderabad",
+    },
+    contactNumber: "9876543218",
+    isVerified: true,
+    status: "Available",
+  },
+
+  {
+    title: "Girls Hostel near Anna University Chennai",
+    description:
+      "Safe and well-maintained hostel for girls near Anna University, Chennai. Spacious rooms with triple sharing option. Healthy home-cooked meals served three times a day. 24/7 security and CCTV surveillance. Laundry facility available. Very popular among engineering students.",
+    propertyType: "Hostel",
+    roomType: "Triple Sharing",
+    rent: 4500,
+    securityDeposit: 9000,
+    availableFrom: new Date("2025-01-05"),
+    genderPreference: "Female",
+    furnishing: "Furnished",
+    amenities: ["WiFi", "Food", "Power Backup", "Attached Bathroom"],
+    images: [
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800",
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800",
+    ],
+    location: {
+      city: "Chennai",
+      state: "Tamil Nadu",
+      area: "Guindy",
+      address: "Near Anna University, Guindy, Chennai",
+    },
+    contactNumber: "9876543219",
+    isVerified: true,
+    status: "Available",
+  },
+];
+
+export default properties;

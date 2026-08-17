@@ -31,13 +31,15 @@ function Roomies() {
   const [occupation, setOccupation] = useState("");
   const [maxBudget, setMaxBudget] = useState("");
 
-  useEffect(() => {
+ useEffect(() => {
     const fetchRoommates = async () => {
       try {
         setLoading(true);
         setError("");
 
-        const response = axios.get(`${import.meta.env.VITE_API_URL}/api/roommates`)
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/roommates`
+        );
 
         if (response.data?.success) {
           setRoommates(response.data.data || []);
