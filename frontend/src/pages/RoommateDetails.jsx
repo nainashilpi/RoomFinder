@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { getLoggedInUser } from "../utils/auth";
 import roomieImg from "../images/roomieImg.jpg";
 
 import {
@@ -21,6 +23,8 @@ import {
   FaGlassCheers,
   FaLeaf,
   FaCalendarAlt,
+  FaEdit,
+  FaTrashAlt,
 } from "react-icons/fa";
 
 const RoommateDetails = () => {
@@ -30,6 +34,13 @@ const RoommateDetails = () => {
   const [roommate, setRoommate] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [deleting, setDeleting] = useState(false);
+
+  const loggedInUser = getLoggedInUser();
+
+  // =====================================================
+  // FETCH ROOMMATE
+  // =====================================================
 
   useEffect(() => {
     const fetchRoommateDetails = async () => {
@@ -37,7 +48,9 @@ const RoommateDetails = () => {
         setLoading(true);
         setError("");
 
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/roommates/${id}`)
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/roommates/${id}`
+        );
 
         if (response.data?.success) {
           setRoommate(response.data.data);
@@ -49,7 +62,6 @@ const RoommateDetails = () => {
           "Error fetching roommate:",
           err.response?.data || err.message
         );
-
         setError(
           err.response?.data?.message ||
             "Failed to fetch roommate details."
@@ -61,6 +73,58 @@ const RoommateDetails = () => {
 
     if (id) fetchRoommateDetails();
   }, [id]);
+
+  // =====================================================
+  // CHECK OWNERSHIP
+  // =====================================================
+
+  const isOwner =
+    loggedInUser &&
+    roommate?.owner &&
+    (loggedInUser.id === roommate.owner ||
+      loggedInUser.id === roommate.owner?._id);
+
+  // =====================================================
+  // DELETE ROOMMATE
+  // =====================================================
+
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this roommate profile? This action cannot be undone."
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      setDeleting(true);
+
+      const token = localStorage.getItem("token");
+
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/api/roommates/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("Roommate profile deleted successfully!");
+      navigate("/roomies");
+    } catch (error) {
+      console.error("Delete error:", error);
+      toast.error(
+        error.response?.data?.message ||
+          "Failed to delete roommate profile."
+      );
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  // =====================================================
+  // LOADING
+  // =====================================================
 
   if (loading) {
     return (
@@ -154,20 +218,16 @@ const RoommateDetails = () => {
 
   return (
     <div className="min-h-screen bg-[#F4F8FB] text-[#0A1931] pb-16">
-
       {/* ================= HERO ================= */}
       <section className="relative min-h-[430px] md:min-h-[475px] overflow-hidden text-white">
         <div
           className="absolute inset-0 bg-cover bg-center scale-[1.02]"
           style={{ backgroundImage: `url(${roomieImg})` }}
         />
-
-        {/* Same dark RoomFinder-style overlay */}
         <div className="absolute inset-0 bg-[#071A33]/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071A33]/95 via-[#0A1931]/80 to-[#0A1931]/65" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 pt-8 md:pt-10 pb-12">
-
           <button
             onClick={() => navigate("/roomies")}
             className="inline-flex items-center gap-2 bg-[#071A33]/70 hover:bg-[#4A7FA7] border border-white/10 backdrop-blur-md px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 group"
@@ -176,9 +236,7 @@ const RoommateDetails = () => {
             Back to Roomies
           </button>
 
-          {/* HERO CONTENT */}
           <div className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-[230px_1fr_255px] items-center gap-7 md:gap-9">
-
             {/* BIG PROFILE IMAGE */}
             <div className="flex justify-center lg:justify-start">
               {roommate.profileImage ? (
@@ -247,6 +305,32 @@ const RoommateDetails = () => {
                   <p className="text-sm text-[#C6D7E5]">{area}</p>
                 </div>
               </div>
+
+              {/* ========== OWNER BUTTONS IN HERO ========== */}
+              {isOwner && (
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
+                  <button
+                    onClick={() => navigate(`/editRoommate/${id}`)}
+                    className="flex items-center gap-2 bg-[#4A7FA7] hover:bg-[#3A6F97] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
+                  >
+                    <FaEdit />
+                    Edit Profile
+                  </button>
+
+                  <button
+                    onClick={handleDelete}
+                    disabled={deleting}
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 hover:-translate-y-0.5 shadow-lg ${
+                      deleting
+                        ? "bg-gray-400 cursor-not-allowed text-white"
+                        : "bg-red-500 hover:bg-red-600 text-white"
+                    }`}
+                  >
+                    <FaTrashAlt />
+                    {deleting ? "Deleting..." : "Delete Profile"}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* CONTACT CARD */}
@@ -294,7 +378,6 @@ const RoommateDetails = () => {
 
       {/* ================= CONTENT ================= */}
       <main className="max-w-7xl mx-auto px-5 -mt-8 relative z-20">
-
         {/* QUICK OVERVIEW */}
         <section className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8">
           <div className="flex items-center gap-3 mb-6">
@@ -341,7 +424,6 @@ const RoommateDetails = () => {
 
         {/* ABOUT + LIFESTYLE */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-
           <section className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-full bg-[#EAF3FA] text-[#4A7FA7] flex items-center justify-center">
@@ -399,7 +481,6 @@ const RoommateDetails = () => {
 
         {/* LOCATION + CONTACT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-
           <section className="bg-white rounded-3xl shadow-lg border border-gray-100 p-6 md:p-8">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-full bg-[#EAF3FA] text-[#4A7FA7] flex items-center justify-center">
@@ -513,4 +594,3 @@ const RoommateDetails = () => {
 };
 
 export default RoommateDetails;
-
